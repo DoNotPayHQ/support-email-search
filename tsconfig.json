@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+	  "module": "commonjs",
+	  "esModuleInterop": true,
+	  "resolveJsonModule": true,
+	  "target": "es6",
+	  "moduleResolution": "node",
+	  "sourceMap": true,
+	  // "strict": true,
+	  "outDir": "dist",
+	  "baseUrl": "./src",
+	  "paths": {
+		"api/*": ["api/*"],
+		"db/*": ["db/*"],
+		"remote/*": ["remote/*"],
+		"business/*": ["business/*"],
+		"lib/*": ["lib/*"],
+		"repository/*": ["repository/*"],
+		"utils/*": ["utils/*"],
+		"config/*": ["config/*"],
+		"dto/*": ["dto/*"],
+		"asset/*": ["asset/*"],
+	  }
+	},
+	"lib": ["es2022"],
+	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules"]
+  }
+  
