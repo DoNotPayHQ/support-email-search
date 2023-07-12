@@ -50,6 +50,7 @@ function addFilter(channel, filter) {
 }
 export async function getEmail(id) {
 	const idInt =Number(id)
+	console.log('length', emailThreads.length)
 	const emailThread = emailThreads.find((emailThread) => {
 		return emailThread.id === idInt;
 	});
