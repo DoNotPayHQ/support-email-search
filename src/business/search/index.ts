@@ -48,7 +48,29 @@ function addFilter(channel, filter) {
 	}
 	return false
 }
-export async function getEmails(searchString: string, ticketBy?: string) {
+export async function getEmail(id) {
+	const idInt =Number(id)
+	const emailThread = emailThreads.find((emailThread) => {
+		return emailThread.id === idInt;
+	});
+	if (!emailThread) {
+		return null;
+	}
+	return {
+		createdAt: emailThread.created_at,
+		subject: emailThread.subject,
+		updatedAt: emailThread.updated_at,
+		requester: emailThread.requester?.name,
+		id: emailThread.id,
+		group: emailThread.group?.name,
+		description: emailThread.description,
+		type: emailThread.type,
+		status: emailThread.status,
+		comments: emailThread.comments
+	};
+}
+
+export async function getEmails(searchString: string, ticketBy?: string, fromDate?: string, toDate?: string) {
 	const filter ={}
 	if (ticketBy === 'user') {
 		filter['channel'] = 'email'
@@ -75,6 +97,18 @@ export async function getEmails(searchString: string, ticketBy?: string) {
 	const results = [];
 	for (const emailThread of emailThreads) {
 		const createdAt = new Date(emailThread.created_at);
+		if (fromDate) {
+			const fromDateObj = new Date(fromDate);
+			if (createdAt < fromDateObj) {
+				continue;
+			}
+		}
+		if (toDate) {
+			const toDateObj = new Date(toDate);
+			if (createdAt > toDateObj) {
+				continue;
+			}
+		}
 		if (emailThread.comments?.length === 0) {
 			continue;
 		}
@@ -115,7 +149,8 @@ export async function getEmails(searchString: string, ticketBy?: string) {
 				updatedAt: emailThread.updated_at,
 				requester: emailThread.requester?.name,
 				id: emailThread.id,
-				group: emailThread.group?.name
+				group: emailThread.group?.name,
+				description: emailThread.description,
 			};
 			results.push(singleOutput);
 		}

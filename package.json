@@ -1,5 +1,5 @@
 {
-	"name": "discord-role-integration",
+	"name": "support-email-search",
 	"version": "1.0.0",
 	"main": "index.js",
 	"license": "MIT",
@@ -12,7 +12,7 @@
 		"lintfix": "./node_modules/.bin/eslint --fix 'src/**/*.ts'"
 	},
 	"engines": {
-		"node": ">=18.0.0"
+		"node": ">=16.0.0"
 	},
 	"dependencies": {
 		"@types/node": "^18.11.7",
