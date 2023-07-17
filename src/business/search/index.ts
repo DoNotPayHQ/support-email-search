@@ -71,7 +71,7 @@ export async function getEmail(id) {
 	};
 }
 
-export async function getEmails(searchString: string, ticketBy?: string, fromDate?: string, toDate?: string) {
+export async function getEmails(searchString: string, ticketBy?: string, fromDate?: string, toDate?: string, latest?: boolean) {
 	const filter ={}
 	if (ticketBy === 'user') {
 		filter['channel'] = 'email'
@@ -113,9 +113,13 @@ export async function getEmails(searchString: string, ticketBy?: string, fromDat
 		if (emailThread.comments?.length === 0) {
 			continue;
 		}
+		let comments = emailThread.comments
+		if (latest) {
+			comments = [comments[comments.length - 1]]
+		}
 		let fxxaa = [];
 		if (andOr === 'and') {
-			fxxaa = emailThread.comments.filter((c: any) => {
+			fxxaa = comments.filter((c: any) => {
 				if (
 					addFilter(c.via.channel, filter) &&
 					searchStringItems.map((i) => c.plain_body.toLowerCase().includes(i)).every((v) => v === true)
@@ -125,7 +129,7 @@ export async function getEmails(searchString: string, ticketBy?: string, fromDat
 				return false;
 			});
 		} else {
-			fxxaa = emailThread.comments.filter((c: any) => {
+			fxxaa = comments.filter((c: any) => {
 				if (
 					addFilter(c.via.channel, filter) &&
 					searchStringItems.map((i) => c.plain_body.toLowerCase().includes(i)).includes(true)

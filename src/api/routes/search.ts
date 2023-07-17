@@ -12,7 +12,8 @@ router.get('/', asyncHandler(async function (req, res) {
 	const ticketBy = req.query.ticketBy || null;
 	const startDate = req.query.startDate || null;
 	const endDate = req.query.endDate || null;
-	const results = await getEmails(searchString, ticketBy, startDate, endDate);
+	const latest = req.query.latest || false;
+	const results = await getEmails(searchString, ticketBy, startDate, endDate, latest);
 	res.send(results);
 }));
 

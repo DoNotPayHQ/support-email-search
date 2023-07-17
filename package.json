@@ -8,7 +8,7 @@
 		"start": "NODE_PATH=dist/ node dist/index.js",
 		"sample": "DEV=true NODE_PATH=./src ts-node-dev --respawn --inspect -- src/search.ts",
 		"lint": "./node_modules/.bin/eslint --max-warnings=0 --ext .ts src/",
-		"dev": "DEV=true NODE_OPTIONS=--max-old-space-size=1536 NODE_PATH=./src ts-node-dev --respawn --inspect -- src/index.ts",
+		"dev": "DEV=true NODE_OPTIONS=--max-old-space-size=2048 NODE_PATH=./src ts-node-dev --respawn --inspect -- src/index.ts",
 		"lintfix": "./node_modules/.bin/eslint --fix 'src/**/*.ts'"
 	},
 	"engines": {
