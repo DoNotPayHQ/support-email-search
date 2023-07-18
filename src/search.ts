@@ -381,5 +381,5 @@ function readAndLoopJsonFile(filePath: string): void {
   });
 }
 
-readAndLoopJsonFile("./emails.txt");
+readAndLoopJsonFile("./emails2023.txt");
 

@@ -3,7 +3,7 @@ import * as fs from 'fs';
 interface EmailThread {
 	created_at: string;
 }
-const readStream = fs.createReadStream('./emails.txt', {encoding: 'utf8', highWaterMark: 1024 * 1024 * 30});
+const readStream = fs.createReadStream('./emails2023.txt', {encoding: 'utf8', highWaterMark: 1024 * 1024 * 30});
 const emailThreads = [];
 let errors = 0;
 readStream.on('data', (chunk) => {

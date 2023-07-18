@@ -2,7 +2,6 @@ import app from 'api/app';
 import config from 'configuration';
 import logger from 'lib/logger';
 // import * as fs from 'fs';
-// const foo = fs.readFileSync('../emails.txt','utf8');
 
 const server = app.listen(config.PORT, () => {
 	logger.info(`Listening to port ${config.PORT}`);
